@@ -1,7 +1,9 @@
 import React, { useState, useContext } from "react";
 import { AppContext } from "../../context/AppContext";
+import { createExpense } from "../../utils/expense-utils";
 
 const AddExpenseForm = () => {
+
   const { expenses, setExpenses } = useContext(AppContext);
 
   const [ name, setName ] = useState("");
@@ -15,7 +17,7 @@ const AddExpenseForm = () => {
       description: name,
       cost: parseFloat(cost),
     } 
-
+    createExpense(newExpense);
     setExpenses([...expenses, newExpense]);
   };
 
