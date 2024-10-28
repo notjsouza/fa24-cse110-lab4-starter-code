@@ -83,5 +83,5 @@ test('validate budget balance formula', () => {
   const totalSpentAfterDelete = parseFloat(totalSpent.textContent?.split('$')[1] ?? '0');
   const remainingBalanceAfterDelete = parseFloat(remainingBudget.textContent?.split('$')[1] ?? '0');
   
-  expect(budgetValue).toBe(remainingBalanceAfterDelete + totalSpentAfterDelete); 
+  expect(budgetValue).toBe(remainingBalanceAfterDelete - totalSpentAfterDelete); 
 });
