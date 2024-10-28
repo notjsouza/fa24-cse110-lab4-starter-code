@@ -1,10 +1,14 @@
+import { useContext } from "react";
+import { AppContext } from "../../context/AppContext";
 import { Expense } from "../../types/types";
 
+
 const ExpenseItem = (currentExpense: Expense) => {
-  // Exercise: Consume the AppContext here
+  const { expenses, setExpenses } = useContext(AppContext);
 
   const handleDeleteExpense = (currentExpense: Expense) => {
-    // Exercise: Remove expense from expenses context array
+    const updatedExpenses = expenses.filter((e : Expense) => e.id !== currentExpense.id);
+    setExpenses(updatedExpenses);
   };
 
   return (
@@ -12,7 +16,11 @@ const ExpenseItem = (currentExpense: Expense) => {
       <div>{currentExpense.name}</div>
       <div>${currentExpense.cost}</div>
       <div>
-        <button onClick={() => handleDeleteExpense(currentExpense)}>x</button>
+        <button
+        data-testid={`delete-button-${currentExpense.name}`} 
+        onClick={() => handleDeleteExpense(currentExpense)}>
+          x
+        </button>
       </div>
     </li>
   );
