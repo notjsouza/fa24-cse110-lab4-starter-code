@@ -12,7 +12,7 @@ const AddExpenseForm = () => {
 
     const newExpense = {
       id: expenses.length.toString(),
-      name: name,
+      description: name,
       cost: parseFloat(cost),
     } 
 
