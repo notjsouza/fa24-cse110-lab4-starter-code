@@ -1,14 +1,20 @@
 import { useContext } from "react";
 import { AppContext } from "../../context/AppContext";
 import { Expense } from "../../types/types";
+import { deleteExpense } from "../../utils/expense-utils";
 
 
 const ExpenseItem = (currentExpense: Expense) => {
   const { expenses, setExpenses } = useContext(AppContext);
 
-  const handleDeleteExpense = (currentExpense: Expense) => {
-    const updatedExpenses = expenses.filter((e : Expense) => e.id !== currentExpense.id);
-    setExpenses(updatedExpenses);
+  const handleDeleteExpense = async (currentExpense: Expense) => {
+    try {
+      await deleteExpense(currentExpense.id);
+      const updatedExpenses = expenses.filter((e : Expense) => e.id !== currentExpense.id);
+      setExpenses(updatedExpenses);
+    } catch (error) {
+      console.error("Failed to delete expense", error);
+    }
   };
 
   return (

@@ -5,7 +5,6 @@ import { createExpense } from "../../utils/expense-utils";
 const AddExpenseForm = () => {
 
   const { expenses, setExpenses } = useContext(AppContext);
-
   const [ name, setName ] = useState("");
   const [ cost, setCost ] = useState("");
 
@@ -13,7 +12,7 @@ const AddExpenseForm = () => {
     event.preventDefault();
 
     const newExpense = {
-      id: expenses.length.toString(),
+      id: (expenses.length+1).toString(),
       description: name,
       cost: parseFloat(cost),
     } 
